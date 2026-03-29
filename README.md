@@ -1,60 +1,65 @@
-# SafeCart (hackathon demo)
+<div align="center">
 
-Disguised fashion storefront (Layer 1) with a hidden **Safe Space** (Layer 2): Kerala helplines, AI chat (via your API key), legal info, safety plan, grounding exercises, encrypted-at-rest-style file vault per user, SOS SMS helper, shelter list, mood journal.
+# SafeCart 🛍️
 
-## Requirements
+**A STOREFRONT FOR HIM , A SANCTUARY FOR HER.**
 
-- [Node.js](https://nodejs.org/) 18 or newer  
-- npm
+*A women's safety platform hidden inside a functional disguise, not a full e-commerce store — built for women in Kerala who cannot seek help openly.*
 
-## Setup
+</div>
 
-```bash
-cd "Project SafeCart"
-```
+---
 
-Windows CMD: `copy .env.example .env`  
-PowerShell: `Copy-Item .env.example .env`
+## The Concept
 
-Edit `.env`:
+SafeCart looks and works exactly like a real Indian fashion shopping website. Sarees, kurtis, jewellery, a cart, a login — everything. But hidden underneath is a complete women's safety platform, accessible only through a secret trigger and a private password.
 
-- `JWT_SECRET` — long random string  
-- `GOOGLE_AI_API_KEY` — optional; get a key from [Google AI Studio](https://aistudio.google.com/apikey). Without it, chat shows a supportive fallback instead of calling **Gemini**.  
+**Why?** Abusers monitor phones. They never suspect a shopping app.
 
-## Run
+Tap the logo 5 times → enter your password → your Safe Space opens. One tap on the panic exit and you're back to the shop, instantly.
 
-```bash
-npm install
-npm start
-```
+---
 
-Open **http://localhost:3000**
+## Features
 
-## Demo flow
+| | Feature | Description |
+|---|---|---|
+| 📞 | **Helplines** | Kerala-specific helplines by category — emergency, women & DV, mental health, children, legal aid. Direct tap-to-call. |
+| 🤍 | **Talk to Someone** | AI chat companion — warm, non-judgmental, trauma-aware. Always surfaces emergency numbers if you're in danger. |
+| ⚖️ | **Know Your Rights** | Plain-language legal info — PWDVA, FIR process, maintenance rights, custody, free legal aid. No jargon. |
+| 🗒️ | **Safety Plan** | A private, guided form to plan ahead — warning signs, go-bag, contacts, code word, exit plan. |
+| 🧘 | **Think Clearly** | Grounding and breathing exercises for moments of panic. 5-4-3-2-1, box breathing, body scan, affirmations. |
+| 🔐 | **My Safe Folder** | PIN-protected vault to store photos of important documents — Aadhaar, passbook, FIR copies. |
+| 🚨 | **SOS Alert** | One tap sends a pre-written SMS alert to your trusted contact. |
+| 🏠 | **Find Shelter** | Searchable directory of real shelters across all 14 Kerala districts with direct call links. |
+| 📓 | **Mood Journal** | Daily mood tracker with private notes. Stored securely and synced to your account. |
 
-1. **Create Account** — shop password (min 6 chars) + **private space password** (min 4 chars, stored hashed on the server).  
-2. Browse the shop; **tap the logo 5 times within 3 seconds** (while signed in).  
-3. Enter your **private space password** — verified by `POST /api/safe/unlock`.  
-4. Use **← Back to Shopping** for instant return to the storefront.  
-5. **Sign In** button shows **Account** when logged in; click again to **sign out**.
+---
 
-Data is stored under `data/db.json`; uploads under `uploads/`. Replace with PostgreSQL / S3 for production.
+## Built With
 
-## API (all JSON except vault upload)
+- **Frontend** — HTML, CSS, JavaScript (single file, no framework)
+- **Backend** — Node.js with Express
+- **AI** — Google Gemini API (gemini-2.0-flash)
+- **Auth** — JWT-based authentication for shop login and safe space access
+- **Database** — Local JSON storage (`db.json`) for journal, safety plan, vault, and SOS contact storage
+- **Languages** — English and Malayalam (toggle in-app)
+---
 
-| Method | Path | Auth | Purpose |
-|--------|------|------|---------|
-| POST | `/api/auth/register` | — | Register + set private password |
-| POST | `/api/auth/login` | — | Login → JWT |
-| GET | `/api/auth/me` | Bearer | Current user |
-| POST | `/api/safe/unlock` | Bearer | Check private password |
-| GET/POST | `/api/safety-plan` | Bearer | Safety plan |
-| GET/POST/DELETE | `/api/journal` | Bearer | Mood journal |
-| GET/POST | `/api/sos` | Bearer | Trusted contact |
-| GET/POST/DELETE | `/api/vault` | Bearer | File list / upload / delete |
-| GET | `/api/vault/file/:id?token=JWT` | query | View thumbnail (for `<img src>`) |
-| POST | `/api/chat` | Bearer | AI messages → Google Gemini |
+## Safety by Design
 
-## Mobile
+- No "safety app" branding visible anywhere on the surface
+- Password gate before entering the safe space
+- Panic exit returns to the shop instantly, no trace
+- Works on any browser — no download, no suspicious home screen icon
+- Sensitive data tied to verified user accounts, never exposed
 
-Same URL on phone and desktop; layout uses responsive CSS. For HTTPS on LAN, use a tunnel (e.g. ngrok) if you need secure context features.
+---
+
+<div align="center">
+
+*Built with 💗 in Kerala*
+
+*"She shouldn't have to choose between asking for help and staying safe. Now she doesn't."*
+
+</div>
