@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SafeCart — Fashion & Lifestyle</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<div id="layer-transition"></div>
+<div id="toast"></div>
+
+<div id="login-overlay" role="dialog" aria-modal="true" aria-label="Account Login">
+  <div class="login-card">
+    <button class="login-close" id="login-close-btn" aria-label="Close">×</button>
+    <div class="login-logo">Safe<span style="color:#1a1a1a">Cart</span></div>
+    <div class="login-tabs">
+      <div class="login-tab active" data-login-tab="signin">Sign In</div>
+      <div class="login-tab" data-login-tab="register">Create Account</div>
+    </div>
+
+    <div class="login-panel active" id="login-panel-signin">
+      <div class="login-field">
+        <label>Email Address</label>
+        <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="login-field">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password" />
+      </div>
+      <button class="btn-login-submit" id="btn-signin">Sign In</button>
+      <div class="login-divider">or continue with</div>
+      <button type="button" class="btn-social">🌐 Continue with Google</button>
+      <button type="button" class="btn-social">🍎 Continue with Apple</button>
+      <div class="login-switch">Don't have an account? <span data-login-switch="register">Create one</span></div>
+    </div>
+
+    <div class="login-panel" id="login-panel-register">
+      <div class="login-field">
+        <label>Full Name</label>
+        <input type="text" id="register-name" placeholder="Your name" autocomplete="name" />
+      </div>
+      <div class="login-field">
+        <label>Email Address</label>
+        <input type="email" id="register-email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="login-field">
+        <label>Password (shop account)</label>
+        <input type="password" id="register-password" placeholder="At least 6 characters" autocomplete="new-password" />
+      </div>
+      <div class="login-field">
+        <label>Private space password</label>
+        <input type="password" id="register-safe-pwd" placeholder="Separate — unlocks Safe Space (min 4)" autocomplete="new-password" />
+      </div>
+      <button class="btn-login-submit" id="btn-register">Create Account</button>
+      <div class="login-switch">Already have an account? <span data-login-switch="signin">Sign in</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="pwd-gate" role="dialog" aria-modal="true" aria-label="Enter Safe Space">
+  <div class="pwd-card">
+    <span class="pwd-lock-icon">🌸</span>
+    <h2>Your Safe Space</h2>
+    <p>Enter your <strong>private space password</strong> to continue.<br />It is checked on the server — only you should know it.</p>
+    <div class="pwd-field">
+      <input type="password" id="pwd-input" placeholder="Private space password" maxlength="64" autocomplete="off" />
+      <button type="button" class="pwd-toggle" id="pwd-toggle-vis" aria-label="Show/hide password">👁</button>
+    </div>
+    <p class="pwd-error-msg" id="pwd-error"></p>
+    <button type="button" class="btn-pwd-enter" id="btn-pwd-enter">Enter ✦</button>
+    <div class="pwd-hint">Use the <strong>private space password</strong> you set when you created your account.</div>
+    <button type="button" class="btn-pwd-cancel" id="btn-pwd-cancel">Go back to shopping</button>
+  </div>
+</div>
+
+<div id="layer-shop">
+  <header class="shop-header">
+    <div class="shop-header-inner">
+      <div class="shop-logo" id="logo-trigger">Safe<span>Cart</span></div>
+      <nav class="shop-nav">
+        <a href="#">Women</a>
+        <a href="#">Men</a>
+        <a href="#">Home</a>
+        <a href="#">Sale</a>
+      </nav>
+      <div class="shop-actions">
+        <button type="button" class="shop-action-btn" title="Search">🔍</button>
+        <button type="button" class="shop-action-btn" title="Wishlist">♡</button>
+        <button type="button" class="shop-action-btn" title="Cart">🛒<sup class="shop-cart-badge">3</sup></button>
+        <button type="button" class="shop-login-btn" id="btn-open-login" title="Account">Sign In</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="shop-hero">
+    <h1>New Arrivals — Summer '26</h1>
+    <p>Handcrafted fabrics. Effortless style. Exclusively for you.</p>
+    <div class="shop-hero-btn">Shop the Collection</div>
+  </section>
+
+  <div class="shop-cats">
+    <div class="shop-cat-pill active">All</div>
+    <div class="shop-cat-pill">Sarees</div>
+    <div class="shop-cat-pill">Kurtis</div>
+    <div class="shop-cat-pill">Salwar Sets</div>
+    <div class="shop-cat-pill">Jewellery</div>
+    <div class="shop-cat-pill">Bags</div>
+    <div class="shop-cat-pill">Footwear</div>
+  </div>
+
+  <section class="shop-section">
+    <h2 class="shop-section-title">Trending Now</h2>
+    <div class="shop-grid">
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#fce4ec">🥻</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Kanjeevaram Silk Saree</div>
+          <div><span class="shop-product-price">₹4,299</span><span class="shop-product-muted">₹6,500</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#e3f2fd">👗</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Floral Anarkali Kurti</div>
+          <div><span class="shop-product-price">₹1,199</span><span class="shop-product-muted">₹1,899</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#e8f5e9">🧣</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Pashmina Stole</div>
+          <div><span class="shop-product-price">₹899</span><span class="shop-product-muted">₹1,400</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#fff3e0">👜</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Potli Clutch Bag</div>
+          <div><span class="shop-product-price">₹649</span><span class="shop-product-muted">₹999</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#f3e5f5">💍</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Temple Jewellery Set</div>
+          <div><span class="shop-product-price">₹2,199</span><span class="shop-product-muted">₹3,200</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#fce4ec">🥿</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Kolhapuri Chappals</div>
+          <div><span class="shop-product-price">₹799</span><span class="shop-product-muted">₹1,200</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#e8f5e9">🧴</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Chandrika Herbal Cream</div>
+          <div><span class="shop-product-price">₹249</span><span class="shop-product-muted">₹360</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="shop-product">
+        <div class="shop-product-img" style="background:#fdf3e0">🪔</div>
+        <div class="shop-product-info">
+          <div class="shop-product-name">Brass Diya Set (6 pcs)</div>
+          <div><span class="shop-product-price">₹549</span><span class="shop-product-muted">₹799</span></div>
+          <button type="button" class="shop-add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="shop-footer">
+    <div class="shop-footer-logo">SafeCart</div>
+    <div class="shop-footer-links">
+      <a href="#" id="footer-size-guide">Size Guide</a>
+      <a href="#">Returns</a>
+      <a href="#">Shipping</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="shop-footer-copy">© 2026 SafeCart India. All rights reserved.</p>
+  </footer>
+</div>
+
+<div id="decoy-size-modal" hidden style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
+  <div class="decoy-modal-inner">
+    <button type="button" class="decoy-modal-close" id="close-decoy-size">×</button>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:16px;">Size Guide</h3>
+    <table class="decoy-table">
+      <thead><tr><th>Size</th><th>Bust (in)</th><th>Waist (in)</th><th>Hip (in)</th></tr></thead>
+      <tbody>
+        <tr><td>XS</td><td>32</td><td>26</td><td>35</td></tr>
+        <tr><td>S</td><td>34</td><td>28</td><td>37</td></tr>
+        <tr><td>M</td><td>36</td><td>30</td><td>39</td></tr>
+        <tr><td>L</td><td>38</td><td>32</td><td>41</td></tr>
+        <tr><td>XL</td><td>40</td><td>34</td><td>43</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="layer-safe" hidden aria-hidden="true">
+  <header class="safe-header">
+    <div class="safe-header-inner">
+      <span class="safe-lock-label" id="safe-lock-label">Safe Space</span>
+      <div class="safe-header-right">
+        <button type="button" id="lang-toggle">EN | ML</button>
+        <button type="button" id="panic-exit">← Back to Shopping</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="safe-welcome">
+    <h1 id="safe-welcome-title">You are not alone</h1>
+    <p id="safe-welcome-sub">This is your private space. Take a breath. We are here.</p>
+  </div>
+
+  <div class="safe-cards-container">
+    <p class="safe-cards-grid-label">What do you need right now?</p>
+    <div id="safe-cards"></div>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
